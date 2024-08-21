@@ -22,18 +22,75 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let userRez;
-    let userChoice = prompt('Rock, paper or scissors?');
-    if (userChoice.toLowerCase() === "rock"){
-        userRez = "Rock";
-    }else if(userChoice.toLowerCase() === "paper"){
-        userRez = "Paper";
+    let humanChoice;
+    let choice = prompt('Rock, paper or scissors?');
+    if (choice.toLowerCase() === "rock"){
+        humanChoice = "Rock";
+    }else if(choice.toLowerCase() === "paper"){
+        humanChoice = "Paper";
     }else{
-        userRez = "Scissors";
+        humanChoice = "Scissors";
     }
-    return userRez;
+    return humanChoice;
 }
-    
 
-console.log(getComputerChoice());
-console.log(getHumanChoice());
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+      console.log("It's a tie! Both chose " + humanChoice);
+    } else if (
+      (humanChoice === "Rock" && computerChoice === "Scissors") ||
+      (humanChoice === "Paper" && computerChoice === "Rock") ||
+      (humanChoice === "Scissors" && computerChoice === "Paper")
+    ) {
+      humanScore++;
+      console.log("You win! " + humanChoice + " beats " + computerChoice);
+    } else {
+      computerScore++;
+      console.log("You lose! " + computerChoice + " beats " + humanChoice);
+    }
+  }
+
+  // Function to log the score after each round
+  function displayScore() {
+    console.log("Human Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+  }
+
+  // Function to determine the winner of the game
+  function displayFinalWinner() {
+    if (humanScore > computerScore) {
+      console.log("You win the game!");
+    } else if (humanScore < computerScore) {
+      console.log("You lose the game!");
+    } else {
+      console.log("It's a tie game!");
+    }
+  }
+  function playGame() {
+    // Play 5 rounds
+    for (let i = 1; i <= 5; i++) {
+      // Log the current round number
+      console.log("Round " + i + ":");
+
+      // Get new choices every round
+      const humanSelection = getHumanChoice();
+      const computerSelection = getComputerChoice();
+
+      // Log computer's choice for debugging
+      console.log("Computer chooses: " + computerSelection);
+
+      // Play the round with new choices
+      playRound(humanSelection, computerSelection);
+
+      // Display score after each round
+      displayScore();
+      console.log("--------------------------------------------------")
+    }
+
+    // After all rounds are played, display the final winner by calling the displayFinalWinner function
+    displayFinalWinner();
+  }
+
+  // Call the playGame function to start the game
+  playGame();
+
