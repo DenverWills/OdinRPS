@@ -23,14 +23,21 @@ function getComputerChoice(){
 
 function getHumanChoice(){
     let humanChoice;
+    let playerChoice = true;
+    while(playerChoice == true){
+        playerChoice = false;
     let choice = prompt('Rock, paper or scissors?');
     if (choice.toLowerCase() === "rock"){
         humanChoice = "Rock";
     }else if(choice.toLowerCase() === "paper"){
         humanChoice = "Paper";
-    }else{
+    }else if(choice.toLowerCase() === "scissors"){
         humanChoice = "Scissors";
+    }else{
+        console.log("Invalid Option, Try agian.")
+        playerChoice = true;
     }
+}
     return humanChoice;
 }
 
