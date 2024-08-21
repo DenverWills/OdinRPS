@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -17,4 +20,20 @@ function getComputerChoice(){
     }
     return computerChoice;
 }
+
+function getHumanChoice(){
+    let userRez;
+    let userChoice = prompt('Rock, paper or scissors?');
+    if (userChoice.toLowerCase() === "rock"){
+        userRez = "Rock";
+    }else if(userChoice.toLowerCase() === "paper"){
+        userRez = "Paper";
+    }else{
+        userRez = "Scissors";
+    }
+    return userRez;
+}
+    
+
 console.log(getComputerChoice());
+console.log(getHumanChoice());
